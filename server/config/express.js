@@ -24,7 +24,9 @@ module.exports.init = () => {
     // body parsing middleware
     app.use(bodyParser.json());
 
-    // add a router
+    // add a router   
+    app.use('/', require('../routes/index')) 
+    app.use('/users', require('../routes/users'));
     // app.use('/api/example', exampleRouter);
 
     if (process.env.NODE_ENV === 'production') {
