@@ -22,6 +22,7 @@ module.exports.init = () => {
     app.use(morgan('dev'));
 
     // body parsing middleware
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
     // add a router   
