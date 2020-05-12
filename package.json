@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.14",
+    "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -11,6 +13,8 @@
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "material-ui": "^0.20.2",
+    "mdbreact": "^4.26.1",
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.13",
     "morgan": "^1.10.0",
