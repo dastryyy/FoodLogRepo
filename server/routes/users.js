@@ -10,6 +10,7 @@ router.get('/register', (req,res) => res.send('Register'));
 
 //Register handle
 router.post('/register', (req, res) => {
+    //res.send(req.body)
     const { name, email, password, password2 } = req.body;
     let errors = [];
 
@@ -26,9 +27,9 @@ router.post('/register', (req, res) => {
     //Check if email is used
 
     if(errors.length > 0) {
-
+        res.send(errors)
     } else {
-        res.send('pass');
+        res.send(req.body);
     }
  
 })
