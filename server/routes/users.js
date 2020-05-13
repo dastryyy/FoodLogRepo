@@ -2,12 +2,67 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
+const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const keys = require('../config/config');
 
 // User model
 const User = require('../models/User');
 
 // Login page
 router.get('/login', (req,res) => res.send('Login'));
+
+// Login handle
+router.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    let errors = [];
+    // find user by email
+    if(errors.length > 0) {
+        res.status(400).send(errors.join(', '))
+        return;
+    }
+    User.findOne({email: email}).then(user => {
+        if(!user) {
+            errors.push('Email not found')
+            res.status(400).send(errors.join(', '))            
+        }
+        else {
+            // check password
+            bcrypt.compare(password,user.password).then(isMatch => {
+                if(isMatch) {
+                    // user matched
+                    // create JWT payload
+                    const payload = {
+                        id: user._id,
+                        email: user.email
+                    };
+
+                    // sign token
+                    jwt.sign(
+                        payload,
+                        keys.db.secretOrKey,
+                        {
+                            expiresIn: 31556926 // 1 year in seconds
+                        },
+                        (err, token) => {
+                            res.send({
+                                success: true,
+                                token: 'Bearer ' + token
+                            });
+                        }
+                    );                    
+                } else {
+                    errors.push('Password incorrect')
+                    return res
+                      .status(400)
+                      .send(errors.join(', '))
+                }
+            })
+
+        }
+
+    })
+})
 
 // Registration page
 router.get('/register', (req,res) => res.send('Register'));

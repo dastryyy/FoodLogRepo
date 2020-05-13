@@ -3,7 +3,8 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    cors = require('cors')
+    cors = require('cors'),
+    passport = require('passport')
 
 module.exports.init = () => {
     /* 
@@ -18,6 +19,12 @@ module.exports.init = () => {
 
     // initialize app
     const app = express();
+
+    // passport middleware
+    app.use(passport.initialize());
+
+    // passport config
+    require('./passport')(passport)
 
     // enable request logging for development debugging
     app.use(morgan('dev'));

@@ -4,5 +4,6 @@
 module.exports = {
     db: {
         uri: 'mongodb+srv://dgraham:tada123@cen3031-rmjxt.mongodb.net/test?retryWrites=true&w=majority', //place the URI of your mongo database here.
+        secretOrKey: 'secret'
     }
 };
