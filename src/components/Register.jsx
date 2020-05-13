@@ -81,10 +81,10 @@ class Register extends React.Component {
 			})
 			.then(response => {
 				console.log('login response: ')
-				console.log(response)
+                console.log(response.data)
 			}).catch(error => {
 				console.log('login error: ')
-				console.log(error);
+                console.log(error.data);
 			})
 	}
 
