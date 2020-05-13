@@ -28,13 +28,25 @@ router.post('/register', (req, res) => {
         errors.push('Password should be at least 6 characters');
     }
 
-    // Check if email is used
+    // Check if password confirmation is valid
+    if(password.localeCompare(password2) != 0) {
+        errors.push('Passwords do not match')
+    }
+
+
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //return re.test(String(email).toLowerCase());
+    if(!re.test(String(email).toLowerCase())) {
+        errors.push('Email is not valid')
+    }
+    
 
     if(errors.length > 0) {
        // res.status(400).json({'error': errors.join(', ')});
         res.status(400).send(errors.join(', '))
         return;
     } else {
+        // Check if email is used
         User.findOne({ email: email })
             .then(user => {
                 if(user) {
