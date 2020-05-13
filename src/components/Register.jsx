@@ -73,7 +73,7 @@ class Register extends React.Component {
 		console.log(this.state.name);
 		//request to server here
 		axios
-			.post('users/register', {
+			.post('/users/register', {
                 name: this.state.name,
                 email: this.state.email,
                 password: this.state.password,
