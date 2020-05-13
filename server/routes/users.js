@@ -1,4 +1,4 @@
-//for user login/registration
+// for user login/registration
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs')
@@ -33,16 +33,13 @@ router.post('/register', (req, res) => {
         errors.push('Passwords do not match')
     }
 
-
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //return re.test(String(email).toLowerCase());
+    // Check if email is in the correct format
+    var re = /\S+@\S+\.\S+/;
     if(!re.test(String(email).toLowerCase())) {
         errors.push('Email is not valid')
-    }
-    
+    }    
 
     if(errors.length > 0) {
-       // res.status(400).json({'error': errors.join(', ')});
         res.status(400).send(errors.join(', '))
         return;
     } else {
