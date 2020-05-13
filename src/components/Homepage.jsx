@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -66,8 +66,22 @@ class Homepage extends React.Component {
   }
 
   handleSubmit(event){
-    console.log(this.state)
     event.preventDefault();
+    //console.log(this.state)
+    axios
+      .post('/users/login', {
+          email: this.state.email,
+          password: this.state.password
+      })
+      .then((req, res) => {
+          if(req.status === 200) {
+            alert('Successful login!')
+          }
+      })
+      .catch(error => {
+        alert(error.response.data)
+      })
+
   }
 
   render() {    
@@ -91,7 +105,7 @@ class Homepage extends React.Component {
               required
               fullWidth
               id="email"
-              onClick={this.handleChange}
+              onChange={this.handleChange}
               label="Email Address"
               name="email"
               autoComplete="email"
@@ -106,7 +120,7 @@ class Homepage extends React.Component {
               label="Password"
               type="password"
               id="password"
-              onClick={this.handleChange}
+              onChange={this.handleChange}
               autoComplete="current-password"
             />
             <FormControlLabel
