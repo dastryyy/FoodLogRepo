@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from "axios";
+import { Redirect } from 'react-router-dom'
 
 function Copyright() {
   return (
@@ -79,11 +80,15 @@ class Register extends React.Component {
                 password: this.state.password,
                 password2: this.state.password2
 			})
-			.then(response => {
-				//console.log('login response: ')
-                //console.log(response.data)
+			.then((req,res) => {
+                if(req.status === 200) {
+                    alert('Successful registration!')
+                    this.setState({
+                        redirectTo: '/'
+                    })
+
+                }
 			}).catch(error => {
-				//console.log('login error: ')
                 alert(error.response.data)
             })
         
@@ -94,6 +99,10 @@ class Register extends React.Component {
   render() {  
     const {classes} = this.props;
 
+    if(this.state.redirectTo) {
+        return <Redirect to={{pathname: this.state.redirectTo}}/>
+    }
+    else {
     return (
         <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -187,6 +196,7 @@ class Register extends React.Component {
         </Box>
         </Container>
     );
+    }
     }
 }
 
