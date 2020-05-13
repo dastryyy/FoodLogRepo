@@ -61,29 +61,18 @@ export default function SignUp() {
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="name"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Name"
                 autoFocus
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
+            </Grid>          
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
