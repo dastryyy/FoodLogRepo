@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from "axios";
 
 function Copyright() {
   return (
@@ -66,10 +67,28 @@ class Register extends React.Component {
     this.setState({[name]:value})
   }
 
-  handleSubmit(event){
-    console.log(this.state)
-    event.preventDefault();
-  }
+    handleSubmit(event){
+		event.preventDefault();
+		console.log('login-form, name: ');
+		console.log(this.state.name);
+		//request to server here
+		axios
+			.post('users/register', {
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                password2: this.state.password2
+			})
+			.then(response => {
+				console.log('login response: ')
+				console.log(response)
+			}).catch(error => {
+				console.log('login error: ')
+				console.log(error);
+			})
+	}
+
+  
 
   render() {  
     const {classes} = this.props;

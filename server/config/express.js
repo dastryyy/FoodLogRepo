@@ -23,7 +23,7 @@ module.exports.init = () => {
 
     // body parsing middleware
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(bodyParser.json());
+    //app.use(bodyParser.json());
 
     // add a router   
     app.use('/', require('../routes/index')) 
