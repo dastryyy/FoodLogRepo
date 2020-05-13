@@ -71,7 +71,7 @@ class Register extends React.Component {
 		event.preventDefault();
 		console.log('login-form, name: ');
 		console.log(this.state.name);
-		//request to server here
+        // request to server here
 		axios
 			.post('/users/register', {
                 name: this.state.name,
@@ -80,12 +80,13 @@ class Register extends React.Component {
                 password2: this.state.password2
 			})
 			.then(response => {
-				console.log('login response: ')
-                console.log(response.data)
+				//console.log('login response: ')
+                //console.log(response.data)
 			}).catch(error => {
-				console.log('login error: ')
-                console.log(error.data);
-			})
+				//console.log('login error: ')
+                alert(error.response.data)
+            })
+        
 	}
 
   
