@@ -15,6 +15,7 @@
     "ejs": "^3.1.2",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
+    "material-dashboard-react": "^1.8.0",
     "material-ui": "^0.20.2",
     "mdbreact": "^4.26.1",
     "mongodb": "^3.5.7",
